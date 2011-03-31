@@ -66,7 +66,7 @@ module EncodedAttachment
       define_method "#{name}_path=" do |file_path|
         send "#{name}=",              File.open(file_path)
         send "#{name}_file_name=",    File.basename(file_path)
-        send "#{name}_content_type=", MIME::Types.type_for(File.basename(file_path)).first.content_type
+        send "#{name}_content_type=", nil
       end
       
       define_method "#{name}_url=" do |*args|
@@ -92,7 +92,7 @@ module EncodedAttachment
         attributes[name] = io
         if io.respond_to?(:original_filename)
           send "#{name}_file_name=",    io.original_filename
-          send "#{name}_content_type=", MIME::Types.type_for(io.original_filename).first.content_type
+          send "#{name}_content_type=", nil
         elsif io.nil?
           send "#{name}_file_name=",    nil
           send "#{name}_content_type=", nil
