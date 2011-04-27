@@ -12,7 +12,7 @@ Usage
 In a Rails application:
 
     # Gemfile
-    gem "encoded_attachment", :git => "git://github.com/nragaz/encoded_attachment"
+    gem "encoded_attachment", :git => "git@github.com:jetthoughts/encoded_attachment.git"
     
 This will load the class methods into both ActiveRecord and ActiveResource. Nothing will really "happen" unless you use the methods described below in your models.
 
