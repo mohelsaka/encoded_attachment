@@ -40,6 +40,13 @@ module EncodedAttachment
       alias_method_chain :to_xml, :"encoded_#{name}"
       
       define_method "load_with_attached_#{name}" do |attrs|
+        # FIX for Rails 3.1. 
+        # It passes two args to the methods +attributes+ and +remove_root+
+        # We need just first one.
+        if attrs.is_a? Array
+          attrs = attrs.first
+        end
+
         attrs = attrs.stringify_keys
         if attrs.has_key?("#{name}")
           send "#{name}=", attrs.delete("#{name}"), @attributes.has_key?(name)
